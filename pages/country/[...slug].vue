@@ -4,6 +4,7 @@ const { params } = useRoute();
 const country = ref<Root>([]);
 const allFullNames = ref<string[]>([]);
 const isLoading = ref(true);
+const haveBorders = ref(false);
 const NativeNameString = ref<string>("");
 
 console.log(params.slug[0]);
@@ -20,6 +21,10 @@ onBeforeMount(async () => {
     const NativeName = data[0]?.name.nativeName;
     const firstNativeName = NativeName[Object.keys(NativeName)[0]]; // เข้าถึง object ตัวแรกของ nativeName
     NativeNameString.value = firstNativeName.common;
+    const borders = data[0]?.borders;
+    if (borders) {
+      haveBorders.value = true;
+    }
   } catch (error) {
     console.error("Error fetching countries:", error);
   }
@@ -248,18 +253,20 @@ onMounted(() => {
                     </span>
                   </div>
                 </div>
-                <div v-if="allFullNames" class="font-thin">
+                <div class="font-thin">
                   <span class="font-semibold"> Borders Country: </span>
 
                   <span
                     v-for="(name, index) in allFullNames"
+                    v-if="haveBorders"
                     :key="index"
-                    class="hover:text-red-500"
+                    class="hover:text-red-500 hover:bg-black hover:bg-opacity-10 hover:rounded-xl hover:px-2 hover:py-1"
                   >
                     <nuxt-link :to="`/country/${name}`">
-                      {{ name }},
+                      &nbsp; {{ name }} &nbsp;
                     </nuxt-link>
                   </span>
+                  <span v-if="!haveBorders"> No border country </span>
                 </div>
               </div>
             </template>
