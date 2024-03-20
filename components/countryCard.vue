@@ -11,7 +11,6 @@ const props = defineProps<{
 
 <template>
   <nuxt-link :to="`/country/${name}`">
-    <!-- <NuxtLink :to="`/country/${props.id}`" class="group"> -->
     <div
       class="border-2 pb-8 cursor-pointer rounded-md shadow-lg shadow-primaryInput hover:scale-110 transition-all duration-500"
     >
