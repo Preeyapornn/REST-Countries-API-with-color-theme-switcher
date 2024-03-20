@@ -1,0 +1,33 @@
+@import url(https://fonts.google.com/specimen/Nunito+Sans);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Nunito Sans", sans-serif;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Nunito Sans", sans-serif;
+  }
+
+  .container-sm {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+  }
+}
